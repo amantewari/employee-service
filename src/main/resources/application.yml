@@ -1,16 +1,21 @@
 server:
   port: 9090
 
+spring:
+  application:
+    name: employee-service
+
 management:
+  server:
+    port: 9090  # optional if same as server.port
   endpoints:
     web:
       exposure:
-        include: "*"
-  metrics:
-    export:
-      prometheus:
-        enabled: true
+        include: health  # Expose only health endpoint (or use '*' for all)
   endpoint:
-    prometheus:
-      enabled: true
+    health:
+      show-details: always  # Useful for debugging
+      probe:
+        enabled: true       # Enable readiness/liveness probe integration
+
 
