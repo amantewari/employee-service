@@ -11,7 +11,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: health  # Expose only health endpoint (or use '*' for all)
+        include: "*"  # Expose only health endpoint (or use '*' for all)
   endpoint:
     health:
       show-details: always  # Useful for debugging
