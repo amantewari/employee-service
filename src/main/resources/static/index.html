@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Service</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+        }
+        #employees {
+            margin-top: 20px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 60%;
+        }
+        th, td {
+            border: 1px solid #888;
+            padding: 8px 12px;
+            background-color: #fff;
+        }
+        th {
+            background-color: #eee;
+        }
+    </style>
+</head>
+<body>
+    <h1>Employee Service</h1>
+    <button onclick="loadEmployees()">Load Employees</button>
+    <div id="employees"></div>
+
+    <script>
+        async function loadEmployees() {
+            const response = await fetch('/employees');
+            if (!response.ok) {
+                document.getElementById('employees').innerHTML = 'Failed to load employees.';
+                return;
+            }
+            const data = await response.json();
+
+            let html = '<table><tr><th>ID</th><th>Name</th><th>Department</th></tr>';
+            data.forEach(emp => {
+                html += `<tr><td>${emp.id}</td><td>${emp.name}</td><td>${emp.department}</td></tr>`;
+            });
+            html += '</table>';
+            document.getElementById('employees').innerHTML = html;
+        }
+    </script>
+</body>
+</html>
+

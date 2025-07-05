@@ -1,0 +1,21 @@
+server:
+  port: 9090
+
+spring:
+  application:
+    name: employee-service
+
+management:
+  server:
+    port: 9090  # optional if same as server.port
+  endpoints:
+    web:
+      exposure:
+        include: "*"  # Expose only health endpoint (or use '*' for all)
+  endpoint:
+    health:
+      show-details: always  # Useful for debugging
+      probe:
+        enabled: true       # Enable readiness/liveness probe integration
+
+
